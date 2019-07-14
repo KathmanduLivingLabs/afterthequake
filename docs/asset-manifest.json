@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/afterthequake/static/css/main.19ebcdc5.chunk.css",
-    "main.js": "/afterthequake/static/js/main.865e61fd.chunk.js",
-    "main.js.map": "/afterthequake/static/js/main.865e61fd.chunk.js.map",
+    "main.css": "/afterthequake/static/css/main.914d003d.chunk.css",
+    "main.js": "/afterthequake/static/js/main.262fbecd.chunk.js",
+    "main.js.map": "/afterthequake/static/js/main.262fbecd.chunk.js.map",
     "runtime~main.js": "/afterthequake/static/js/runtime~main.2b39d158.js",
     "runtime~main.js.map": "/afterthequake/static/js/runtime~main.2b39d158.js.map",
     "static/js/2.e4d37750.chunk.js": "/afterthequake/static/js/2.e4d37750.chunk.js",
     "static/js/2.e4d37750.chunk.js.map": "/afterthequake/static/js/2.e4d37750.chunk.js.map",
     "index.html": "/afterthequake/index.html",
-    "precache-manifest.9997bc74fa97f20a3b25d4416aacda30.js": "/afterthequake/precache-manifest.9997bc74fa97f20a3b25d4416aacda30.js",
+    "precache-manifest.d04d8e037be0631931f92dc8cf281f8c.js": "/afterthequake/precache-manifest.d04d8e037be0631931f92dc8cf281f8c.js",
     "service-worker.js": "/afterthequake/service-worker.js",
-    "static/css/main.19ebcdc5.chunk.css.map": "/afterthequake/static/css/main.19ebcdc5.chunk.css.map"
+    "static/css/main.914d003d.chunk.css.map": "/afterthequake/static/css/main.914d003d.chunk.css.map"
   }
 }

@@ -9,7 +9,7 @@ section {
   }
   .grey {
     color: #ccc;
-    font-size:2vmin;
+    font-size:2.6vmin;
 
   }
   .orange {
@@ -47,11 +47,20 @@ section {
   
   .smallText {
     font-family: "Open Sans";
-    font-size:2.6vmin;
+    font-size:2.8vmin;
     line-height:1.25;
     font-weight: 300;
   }
   
+  .tinyText {
+    font-family: "Open Sans";
+    font-size:2vmin;
+    line-height:1.25;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+
 
   .test {
     background: #000;

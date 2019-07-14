@@ -4,6 +4,8 @@ import * as mapboxgl from "mapbox-gl";
 import $ from "jquery";
 import ClipLoader from "react-spinners/ClipLoader";
 
+
+
 import stack from "../libs/stack.min";
 
 import Section from "./Section";
@@ -629,7 +631,7 @@ class StackWrapper extends Component {
 						Move your mouse over a district to learn more.
 					</p>
 
-					<p className="smallText">
+					<p className="tinyText">
 						Source: the{" "}
 						<a
 							href="https://ehrpinspection.nra.gov.np/moud/combined-chart"
@@ -712,7 +714,7 @@ class StackWrapper extends Component {
 						Kathmandu Valley. Here, a damage level of five means all
 						the homes within that village collapsed.{" "}
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Source: The Government of Nepal surveyed the household
 						impact for each home outside of Kathmandu Valley, made
 						publicly available{" "}
@@ -745,7 +747,7 @@ class StackWrapper extends Component {
 						Here you can see the areas where landslides occurred in
 						the month following the earthquake.
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Source: The United States Geological Survey used pre-
 						and post-event satellite imagery to map landslides,
 						available{" "}
@@ -770,7 +772,7 @@ class StackWrapper extends Component {
 						included a large number of domestic and international
 						tourists, as well as locals from the region.
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Photo by{" "}
 						<a
 							href="https://www.flickr.com/photos/markhorrell/33657429816/in/photostream/"
@@ -792,7 +794,7 @@ class StackWrapper extends Component {
 						of Nepal led a Post Disaster Needs Assessment to
 						estimate their recovery needs.{" "}
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Source: The Post Disaster Needs Assessment can be found{" "}
 						<a
 							href="https://www.npc.gov.np/images/category/PDNA_volume_BFinalVersion.pdf"
@@ -813,7 +815,7 @@ class StackWrapper extends Component {
 						brought together representatives from over 60 countries
 						exactly two months after the earthquake.
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Source: a briefing of the conference is{" "}
 						<a
 							href="https://kathmandupost.ekantipur.com/news/2015-06-25/44-bn-aid-pledged-during-donor-conference.html"
@@ -836,7 +838,7 @@ class StackWrapper extends Component {
 						100000 (~USD $1000) and a collapsed home received NPR
 						300000 (~USD $3000)
 					</p>
-					<p className="smallText">
+					<p className="tinyText">
 						Source: the full grant disbursement procedure is{" "}
 						<a
 							href="https://drive.google.com/file/d/0B1aJ_HQvgE5rcTFHcHN0bWZ0VUU/view"
