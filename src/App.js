@@ -26,6 +26,9 @@ class App extends Component {
 
   componentWillMount() {
     window.addEventListener("scroll", this.onScroll)
+    $(document).ready(function(){
+      $(this).scrollTop(0);
+    });
   }
   componentDidMount() {
     // window.scrollTo(0,0);

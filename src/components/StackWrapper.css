@@ -8,7 +8,7 @@ section {
     background: none;
   }
   .grey {
-    color: #777;
+    color: #999;
   }
   .orange {
     color: orange;
@@ -26,21 +26,22 @@ section {
   }
 
   .largeText {
-    font-size:8.5vmin;
+    font-size:7vmin;
     line-height:1;
   }
 
   
   .mediumText {
-    font-size:4.5vmin;
+    font-size:4vmin;
     line-height:1.25;
     font-weight: 700;
   }
   
   .smallText {
     font-family: "Open Sans";
-    font-size:2.1vmin;
+    font-size:2.6vmin;
     line-height:1.25;
+    font-weight: 300;
   }
   
 
@@ -52,4 +53,22 @@ section {
     top: 0;
     bottom: 0;
 }
+
+.exceptionLayer {
+  position: fixed;
+  top: 5rem;
+  right: 5rem;
+  z-index:-1;
+  max-width: 30%;
+  text-align: right;
+}
   
+
+.exceptionInfo {
+  position: fixed;
+  bottom: 5rem;
+  left: 5rem;
+  z-index:-1;
+  max-width: 30%;
+  text-align: left;
+}
