@@ -2,6 +2,7 @@
   "name": "riskviz-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://kathmandulivinglabs.github.io/afterthequake",
   "dependencies": {
     "d3": "^3.5.7",
     "jquery": "^3.4.1",

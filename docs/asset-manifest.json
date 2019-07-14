@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.19ebcdc5.chunk.css",
-    "main.js": "/static/js/main.ef2e4549.chunk.js",
-    "main.js.map": "/static/js/main.ef2e4549.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.e4d37750.chunk.js": "/static/js/2.e4d37750.chunk.js",
-    "static/js/2.e4d37750.chunk.js.map": "/static/js/2.e4d37750.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.ad6addbd128518690fc7db1ea4f97622.js": "/precache-manifest.ad6addbd128518690fc7db1ea4f97622.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.19ebcdc5.chunk.css.map": "/static/css/main.19ebcdc5.chunk.css.map"
+    "main.css": "/afterthequake/static/css/main.19ebcdc5.chunk.css",
+    "main.js": "/afterthequake/static/js/main.865e61fd.chunk.js",
+    "main.js.map": "/afterthequake/static/js/main.865e61fd.chunk.js.map",
+    "runtime~main.js": "/afterthequake/static/js/runtime~main.2b39d158.js",
+    "runtime~main.js.map": "/afterthequake/static/js/runtime~main.2b39d158.js.map",
+    "static/js/2.e4d37750.chunk.js": "/afterthequake/static/js/2.e4d37750.chunk.js",
+    "static/js/2.e4d37750.chunk.js.map": "/afterthequake/static/js/2.e4d37750.chunk.js.map",
+    "index.html": "/afterthequake/index.html",
+    "precache-manifest.9997bc74fa97f20a3b25d4416aacda30.js": "/afterthequake/precache-manifest.9997bc74fa97f20a3b25d4416aacda30.js",
+    "service-worker.js": "/afterthequake/service-worker.js",
+    "static/css/main.19ebcdc5.chunk.css.map": "/afterthequake/static/css/main.19ebcdc5.chunk.css.map"
   }
 }
