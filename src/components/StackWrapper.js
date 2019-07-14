@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as d3 from "d3";
 import * as mapboxgl from "mapbox-gl";
 import $ from "jquery";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import stack from "../libs/stack.min";
 
@@ -172,9 +173,9 @@ class StackWrapper extends Component {
 					Math.abs(Math.cos(timestamp / 600) / 2) + minOpacity
 				);
 				map.setPaintProperty(
-				    "shaking-intensity",
-				    "fill-opacity",
-				    Math.abs(Math.sin(timestamp / 600)) * 1
+					"shaking-intensity",
+					"fill-opacity",
+					Math.abs(Math.sin(timestamp / 600)) * 1
 				);
 
 				requestAnimationFrame(animate);
@@ -197,10 +198,13 @@ class StackWrapper extends Component {
 				overflow: "auto",
 				height: "auto"
 			});
-			d3.select(".scroll-ready")
-				.style("visibility", "visible")
-				.transition()
-				.duration(1000);
+			d3.select(".scroll-ready").style("visibility", "visible");
+
+			d3.select(".loadingScreen")
+				.transition("ease")
+				.style("opacity", "0")
+				.duration(1000)
+				.style("z-index", "-1");
 
 			console.log("end of map.onload");
 		});
@@ -210,6 +214,12 @@ class StackWrapper extends Component {
 
 		this.map = map;
 		this.initStack();
+	}
+
+	toTitleCase(str) {
+		return str.replace(/\w\S*/g, function(txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
 	}
 
 	firstMapMagic(position) {
@@ -411,6 +421,9 @@ class StackWrapper extends Component {
 				break;
 
 			case 5:
+                    d3.select(".exceptionLayer").style("z-index", 5);
+                    d3.select(".firstMapBg").style("z-index", 4);
+                    // d3.select("section").style('z-index','unset');
 				if (this.map.isStyleLoaded()) {
 					this.map.fitBounds(
 						[
@@ -444,22 +457,31 @@ class StackWrapper extends Component {
 					);
 				}
 
-				d3.select(".firstMapBg").style("z-index", 4);
-				// d3.select("section").style('z-index','unset');
-				d3.select(".exceptionLayer").style("z-index", 5);
+
 
 				this.map.on("mousemove", "11-dists", e => {
 					const features = this.map.queryRenderedFeatures(e.point, {
 						layers: ["11-dists"]
 					});
-					console.log(features);
-
+					const district = features[0].properties["DNAME.x"];
+					const code = features[0].properties["DCODE"];
+					console.log(features[0].properties);
+					d3.select(".exceptionInfo").style("z-index", 5).html(`<div>
+                        <h5>
+                        ${this.toTitleCase(district)} - Reconstruction Progress
+                        </h5>    
+                        <img class="img-responsive" width="100%" src=${
+							process.env.PUBLIC_URL
+						}/img/${code}.jpg/>
+                        </div>
+                        `);
 					// const locationName = getTranslationForLocationName(features[0].properties.dist_id || 'all', features[0].properties.code, language);
 					// d3.select('#info')
 					//   .text(`${localeFunction.mapOutLineOnHover[language](locationName, features[0].properties.attribute.toFixed(1))}`);
 				});
 
 				this.map.on("mouseout", "11-dists", e => {
+					d3.select(".exceptionInfo").style("z-index", -1);
 					// d3.select('#info')
 					//   .text(locale.mapInteractionHelper[language]);
 				});
@@ -542,12 +564,16 @@ class StackWrapper extends Component {
 
 		if (config !== null) {
 			this.bringBgToFront(config);
-			d3.select(".exceptionLayer").style("z-index", -1);
-			d3.select(".exceptionInfo").style("z-index", -1);
-			this.props.isReady && config.magicFunction(config.position);
+            d3.select(".exceptionLayer").style("z-index", -1);
+            d3.select(".exceptionInfo").style("z-index", -1);
+            this.props.isReady && config.magicFunction(config.position);
+            
 		} else {
+            d3.select(".exceptionLayer").style("z-index", -1);
+            d3.select(".exceptionInfo").style("z-index", -1);
 			this.sendBgBack();
 		}
+		
 	}
 
 	// deactivate function - slide specific extra stuff
@@ -572,6 +598,22 @@ class StackWrapper extends Component {
 					);
 				})}
 
+				<div className="row d-flex loadingScreen">
+					<div className="col-sm-2 offset-md-5 align-self-center">
+						<div className="text-center">
+                            <ClipLoader
+							// css={override}
+							sizeUnit={"px"}
+                            size={170}
+                            margin= "0 auto"
+							color={"#fff"}
+							loading={true}
+						/>
+
+                        </div>
+					</div>
+				</div>
+
 				<div className="exceptionLayer">
 					<p className="mediumText">
 						More than 4 years later, the country has made
@@ -582,6 +624,11 @@ class StackWrapper extends Component {
 						beneficiaries have completed construction. received NPR
 						300000 (~USD $3000).
 					</p>
+
+					<p className="grey ">
+						Move your mouse over a district to learn more.
+					</p>
+
 					<p className="smallText">
 						Source: the{" "}
 						<a
@@ -596,21 +643,19 @@ class StackWrapper extends Component {
 					</p>
 				</div>
 
-                <div className="exceptionInfo">
-
-                </div>
+				<div className="exceptionInfo"></div>
 				<Section
 					id="test"
-					background="https://dl.dropboxusercontent.com/s/a2njgu1jbms5ia4/risk_bg.jpg"
+					// background="https://dl.dropboxusercontent.com/s/a2njgu1jbms5ia4/risk_bg.jpg"
 				>
 					<p className="largeText">
 						<b>Nepal after the quake.</b>
 					</p>
-					<p className="mediumText">
+					<p className="mediumTextLight">
 						Exploring the impacts and reconstruction of the 2015
-						earthquake.
+						Gorkha earthquake.
 					</p>
-					<p className="smallText">
+					<p className="mediumTextLight">
 						Submitted as part of the{" "}
 						<a
 							href="https://understandrisk.org/vizrisk/"
@@ -623,7 +668,7 @@ class StackWrapper extends Component {
 						Barns
 					</p>
 					<p className="grey scroll-ready">
-						Scroll down to continue.
+						Press the down arrow of your keyboard to begin.
 					</p>
 				</Section>
 

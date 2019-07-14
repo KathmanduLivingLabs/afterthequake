@@ -8,7 +8,9 @@ section {
     background: none;
   }
   .grey {
-    color: #999;
+    color: #ccc;
+    font-size:2vmin;
+
   }
   .orange {
     color: orange;
@@ -35,6 +37,12 @@ section {
     font-size:4vmin;
     line-height:1.25;
     font-weight: 700;
+  }
+
+  .mediumTextLight {
+    font-size:4vmin;
+    line-height:1.25;
+    /* font-weight: 700; */
   }
   
   .smallText {
@@ -66,9 +74,26 @@ section {
 
 .exceptionInfo {
   position: fixed;
-  bottom: 5rem;
-  left: 5rem;
+  bottom: 0px;
+  left: 0px;
+  padding:0.5rem;
+  background-color: rgba(0,0,0,0.5);
   z-index:-1;
   max-width: 30%;
   text-align: left;
+}
+
+.loadingScreen {
+  position: fixed;
+  /* padding-top: 5rem; */
+  display: table-cell;
+  vertical-align: middle;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+  font-family: Lato;
+  font-weight: 700;
+  z-index: 100;
 }
