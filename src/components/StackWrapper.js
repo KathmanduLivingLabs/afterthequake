@@ -5,11 +5,68 @@ import $ from "jquery";
 import ClipLoader from "react-spinners/ClipLoader";
 
 
-
 import stack from "../libs/stack.min";
 
 import Section from "./Section";
 import "./StackWrapper.css";
+
+const legendTitles = {
+	1: "MMI (Shaking Intensity)",2:"Average Damage Grade",5: "Percentage of homes reconstructed by June 2019"
+}
+
+const legends = {
+	1: [
+		{label: "1", value:"#679990"},
+		{label: "2", value:"#779f88"},
+		{label: "3", value:"#88a580"},
+		{label: "4", value:"#99ac78"},
+		{label: "5", value:"#aab270"},
+		{label: "6", value:"#bbb969"},
+		{label: "7", value:"#ccbf61"},
+		{label: "8", value:"#ddc659"},
+		{label: "9", value:"#eecc51"},
+		{label: "10", value:"#ffd34a"},
+	],
+	2: [
+		{label: "1-2", value:"#ffffff"},
+		{label: "2-3", value:"#fffbef"},
+		{label: "3-4", value:"#ffefbf"},
+		{label: "4-5", value:"#ffdc72"},
+
+	],
+	5: [
+		{label: "32% to 46%", value:"#eff4f3"},
+		{label: "46% to 63%", value:"#c2d6d2"},
+		{label: "64% to 70%", value:"#94b7b1"},
+		{label: "70% to 85%", value:"#76a39b"},
+	]
+
+}
+
+const images = {
+    districts: {
+        "13": "https://dl.dropboxusercontent.com/s/0ay4ttnkvkmq1zz/13.jpg",
+        "20": "https://dl.dropboxusercontent.com/s/wqcvg13idbp3cct/20.jpg",
+        "21": "https://dl.dropboxusercontent.com/s/jc5objqrxc01n9i/21.jpg",
+        "22": "https://dl.dropboxusercontent.com/s/fhe1m81siwcnzdv/22.jpg",
+        "23": "https://dl.dropboxusercontent.com/s/bnl032h26osmhzt/23.jpg",
+        "24": "https://dl.dropboxusercontent.com/s/62syda2lmooa4i6/24.jpg",
+        "28": "https://dl.dropboxusercontent.com/s/t9u4tn7xcyqpkh1/28.jpg",
+        "29": "https://dl.dropboxusercontent.com/s/aj1w6vci09sre79/29.jpg",
+        "30": "https://dl.dropboxusercontent.com/s/fc853tyhuybmvgi/30.jpg",
+        "31": "https://dl.dropboxusercontent.com/s/so51iklp76mcain/31.jpg",
+        "36": "https://dl.dropboxusercontent.com/s/lmdi7d34yfjvy2q/36.jpg",
+    },
+    backgrounds: {
+        "langtang": "https://dl.dropboxusercontent.com/s/mctsnz7ctrp3z5e/langtang_bg.jpg",
+        "damagecollapse": "https://dl.dropboxusercontent.com/s/8lnr1jpumnjhush/damagecollapse.png",
+        "fullrecovery": "https://dl.dropboxusercontent.com/s/y5n2drf5oqjjlw3/fullrecovery.png",
+        "reconrecovery": "https://dl.dropboxusercontent.com/s/q57glaj2mh89zb7/reconstructionrecovery.png",
+        "langtangbg": "https://dl.dropboxusercontent.com/s/3y4etl5yocnm883/langtang_bg.jpg",
+        "homebg": "https://dl.dropboxusercontent.com/s/z4u2sh1u9hqpcok/adli_edited.jpg"
+    }
+}
+
 
 class StackWrapper extends Component {
 	constructor() {
@@ -53,6 +110,8 @@ class StackWrapper extends Component {
 			zoom: 4 // starting zoom
 		});
 
+
+
 		const point = {
 			type: "Point",
 			coordinates: [84.731, 28.231]
@@ -63,6 +122,9 @@ class StackWrapper extends Component {
 			height: "100%"
 		});
 
+		$(document).ready(function(){
+			$(this).scrollTop(0);
+		  });
 		d3.select(".scroll-ready").style("visibility", "hidden");
 
 		map.on("load", () => {
@@ -70,6 +132,8 @@ class StackWrapper extends Component {
 				center: [85.324, 27.7172], // starting position [lng, lat]
 				zoom: 4 // starting zoom
 			});
+
+
 
 			map.addSource("point", {
 				type: "geojson",
@@ -158,6 +222,15 @@ class StackWrapper extends Component {
 				}
 			});
 
+			
+			// map.fitBounds(
+			// 	[
+			// 		[80.7249999999999943, 26.3711699546563878],
+			// 		[88.1835507091418265, 30.4307314125281145]
+			// 	],
+			// 	{ padding: 100, offset: [-100, 0] }
+			// );
+
 			const animate = timestamp => {
 				const maxRadius = 120;
 				const minRadius = 5;
@@ -196,6 +269,15 @@ class StackWrapper extends Component {
 
 			animate(0);
 
+			
+			// map.fitBounds(
+			// 	[
+			// 		[80.7249999999999943, 26.3711699546563878],
+			// 		[88.1835507091418265, 30.4307314125281145]
+			// 	],
+			// 	{ padding: 100, offset: [-100, 0] }
+			// );
+
 			$("html, body").css({
 				overflow: "auto",
 				height: "auto"
@@ -208,10 +290,6 @@ class StackWrapper extends Component {
 				.duration(1000)
 				.style("z-index", "-1");
 
-			console.log("end of map.onload");
-		});
-		map.once("style.load", () => {
-			console.log("end of map.onstyleload");
 		});
 
 		this.map = map;
@@ -233,6 +311,7 @@ class StackWrapper extends Component {
 				// });
 
 				if (this.map.isStyleLoaded()) {
+
 					this.map.fitBounds(
 						[
 							[80.7249999999999943, 26.3711699546563878],
@@ -240,6 +319,15 @@ class StackWrapper extends Component {
 						],
 						{ padding: 100, offset: [-100, 0] }
 					);
+
+
+					// this.map.fitBounds(
+					// 	[
+					// 		[80.7249999999999943, 26.3711699546563878],
+					// 		[88.1835507091418265, 30.4307314125281145]
+					// 	],
+					// 	{ padding: 100, offset: [-100, 0] }
+					// );
 					this.map.setLayoutProperty(
 						"shaking-intensity",
 						"visibility",
@@ -312,6 +400,8 @@ class StackWrapper extends Component {
 						"visibility",
 						"none"
 					);
+
+					this.makeLegend(position);
 				}
 				break;
 			case 2:
@@ -346,6 +436,8 @@ class StackWrapper extends Component {
 						"visibility",
 						"none"
 					);
+					this.makeLegend(position);
+
 				}
 
 				break;
@@ -457,6 +549,8 @@ class StackWrapper extends Component {
 						"visibility",
 						"visible"
 					);
+					this.makeLegend(position);
+
 				}
 
 
@@ -466,15 +560,14 @@ class StackWrapper extends Component {
 						layers: ["11-dists"]
 					});
 					const district = features[0].properties["DNAME.x"];
-					const code = features[0].properties["DCODE"];
-					console.log(features[0].properties);
+                    const code = features[0].properties["DCODE"];
 					d3.select(".exceptionInfo").style("z-index", 5).html(`<div>
                         <h5>
                         ${this.toTitleCase(district)} - Reconstruction Progress
                         </h5>    
                         <img class="img-responsive" width="100%" src=${
-							process.env.PUBLIC_URL
-						}/img/${code}.jpg/>
+							images.districts[code]
+						}/>
                         </div>
                         `);
 					// const locationName = getTranslationForLocationName(features[0].properties.dist_id || 'all', features[0].properties.code, language);
@@ -568,16 +661,48 @@ class StackWrapper extends Component {
 			this.bringBgToFront(config);
             d3.select(".exceptionLayer").style("z-index", -1);
             d3.select(".exceptionInfo").style("z-index", -1);
+            d3.select(".legend").style("z-index", -1);
             this.props.isReady && config.magicFunction(config.position);
             
 		} else {
             d3.select(".exceptionLayer").style("z-index", -1);
-            d3.select(".exceptionInfo").style("z-index", -1);
+			d3.select(".exceptionInfo").style("z-index", -1);
+            d3.select(".legend").style("z-index", -1);
+			
 			this.sendBgBack();
 		}
 		
 	}
 
+	makeLegend(position){
+		
+		const legendConfig = legends[position];
+
+		let html=`<p style="color: #aaa; font-size: 1.75vmin">LEGEND</p>`
+		 html +=`<p class="legendTitle">${legendTitles[position]}</p>`
+			
+
+		console.log(legendConfig);
+		
+		legendConfig.forEach((item)=> {
+			html += `<div style="display:block" class="text-left px-2">
+			<div style="background-color:${item.value}; height:15px; width:15px; display: inline-block; margin-bottom: -2px"></div>
+			<span style="color:rgba(0,0,0,0.6); font-size:2vmin; color: #ccc; margin-left:4px;">${item.label}</span>
+			</div>` 
+		})
+
+
+		// html +=`</div>`
+
+		// console.log(html);
+		
+		d3.select(".legend")
+			.html(html)
+			.transition("ease")
+			.style("z-index", '5')
+			.duration(1000);
+		
+	}
 	// deactivate function - slide specific extra stuff
 	deactivate(d, i) {}
 
@@ -616,6 +741,8 @@ class StackWrapper extends Component {
 					</div>
 				</div>
 
+				<div className="legend"></div>
+
 				<div className="exceptionLayer">
 					<p className="mediumText">
 						More than 4 years later, the country has made
@@ -647,8 +774,10 @@ class StackWrapper extends Component {
 
 				<div className="exceptionInfo"></div>
 				<Section
-					id="test"
-					// background="https://dl.dropboxusercontent.com/s/a2njgu1jbms5ia4/risk_bg.jpg"
+                    id="test"
+                    // background = {images.backgrounds.homebg}
+                    full
+					background="https://dl.dropboxusercontent.com/s/a2njgu1jbms5ia4/risk_bg.jpg"
 				>
 					<p className="largeText">
 						<b>Nepal after the quake.</b>
@@ -709,9 +838,7 @@ class StackWrapper extends Component {
 						..and it severely damaged homes across 11 districts.
 					</p>
 					<p className="smallText">
-						This is the average damage of all homes with each
-						village of the 11 hardest hit districts outside of
-						Kathmandu Valley. Here, a damage level of five means all
+					This is the average damage to homes in villages of the 11 hardest hit districts outside Kathmandu Valley. A damage level of five means all
 						the homes within that village collapsed.{" "}
 					</p>
 					<p className="tinyText">
@@ -760,7 +887,7 @@ class StackWrapper extends Component {
 						</a>
 					</p>
 				</Section>
-				<Section background="https://www.dl.dropboxusercontent.com/s/mctsnz7ctrp3z5e/langtang_bg.jpg">
+				<Section full background={images.backgrounds.langtang} bgSize="cover" >
 					<p className="mediumText">
 						The village was almost entirely buried.
 					</p>
@@ -768,7 +895,7 @@ class StackWrapper extends Component {
 					<p className="smallText">
 						After an avalanche hit the villages of Ghodatabela and
 						Langtang, nearly 250 people were reported missing. Since
-						Langtang is a popular terkking route, casualties
+						Langtang is a popular trekking route, casualties
 						included a large number of domestic and international
 						tourists, as well as locals from the region.
 					</p>
@@ -787,7 +914,7 @@ class StackWrapper extends Component {
 				<Section>
 					<p className="mediumText">
 						Damages and losses from the earthquake were estimated at
-						NPR 706 billion (USD$7 billion).
+						NPR 706 billion (USD $7 billion).
 					</p>
 					<p className="smallText">
 						Three weeks after the earthquake struck, the Government
@@ -808,7 +935,7 @@ class StackWrapper extends Component {
 				<Section>
 					<p className="mediumText">
 						The international community responded with a pledge for
-						NPR 480 billion (USD$4 billion).
+						NPR 480 billion (USD $4 billion).
 					</p>
 					<p className="smallText">
 						The International Conference on Nepal’s Reconstruction
@@ -827,16 +954,14 @@ class StackWrapper extends Component {
 					</p>
 				</Section>
 
-				<Section>
+				<Section background = {images.backgrounds.damagecollapse} bgSize="900px" bgPosition="left center">
 					<p className="mediumText">
 						Part of this funding was distributed to homeowners to
 						reconstruct.
 					</p>
 					<p className="smallText">
 						The National Reconstruction Authority of Nepal provided
-						aid for eligible homeowners. A damaged home received NPR
-						100000 (~USD $1000) and a collapsed home received NPR
-						300000 (~USD $3000)
+						aid for eligible homeowners. A damaged home received NPR 10000 (~USD $1000) and a collapsed home received NPR 300000 (~USD $3000).
 					</p>
 					<p className="tinyText">
 						Source: the full grant disbursement procedure is{" "}
@@ -854,24 +979,32 @@ class StackWrapper extends Component {
 					className={this.sectionConfig[0].sectionName}
 				></Section>
 
-				<Section full>
+				<Section background = {images.backgrounds.reconrecovery} bgSize="1000px" bgPosition="left center">
 					<p className="mediumText">
-						From financing, to getting construction materials,
-						organizing the reconstruction for a large part of the
-						population is a massive effort.
+					From financing to getting construction materials, organizing nationwide reconstruction is a massive effort.
 					</p>
-					<br />
-					<p className="mediumText">
-						Given the scale, the reconstruction is progressing well.{" "}
+                    <p className="mediumText">
+					Given the scale, Nepal’s reconstruction effort is progressing well.
 					</p>
-					<br />
-					<p className="mediumText">
+					
+				</Section>
+      
+                <Section background = {images.backgrounds.fullrecovery} bgSize="1000px" bgPosition="left center">
+                    <p className="mediumText">
 						However, reconstruction is only one component of
-						recovery… it also encompasses aspects such as
-						livelihoods, the economy and well-being, some of which
-						may be difficult to measure and show on a map but is
-						equally as important.
+						recovery. It also encompasses aspects such as
+						livelihoods, the economy and well-being. 
 					</p>
+                    <br/>
+                    <p className="mediumText">
+						These are difficult to quantify and show on a map, but are equally important.
+                    </p>
+
+				</Section>
+
+				<Section >
+					{/* <p className="mediumText">End.</p> */}
+
 				</Section>
 			</div>
 		);

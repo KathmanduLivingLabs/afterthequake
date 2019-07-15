@@ -59,6 +59,10 @@ section {
     font-weight: 300;
     font-style: italic;
   }
+
+  .mapboxgl-ctrl-attrib-inner > a {
+    color: #000;
+  }
   
 
 
@@ -106,3 +110,26 @@ section {
   font-weight: 700;
   z-index: 100;
 }
+
+.legend {
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+  z-index: 300;
+  background-color: rgba(0,0,0,0.5);
+  color: #ccc;
+  width: 270px;
+    line-height: 1;
+  padding: 10px;
+  text-align: left;
+  /* opacity: 0.8; */
+}
+
+.legendTitle {
+  font-weight: bold;
+}
+
+.legend > p {
+  font-size: 2vmin;
+}
+

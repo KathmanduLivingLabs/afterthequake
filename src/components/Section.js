@@ -1,7 +1,7 @@
 import React from "react";
 // import { url } from 'inspector';
 
-function Section({ children, className, background, full }) {
+function Section({ children, className, background, full, bgSize,  bgPosition  }) {
     const defaultClassName = className || "default";
     if (full) {
         return (
@@ -10,9 +10,10 @@ function Section({ children, className, background, full }) {
                 style={{
                     textAlign: "right",
                     padding: "5em",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    background: `url(${background})` || "#000",
+                    backgroundImage:  `url(${background})`,
+                    backgroundSize:"cover",
+                    // backgroundPosition: bgPosition? bgPosition : "center",
+                    // backgroundRepeat: "no-repeat",
                     zIndex: 4
                 }}
             >
@@ -20,7 +21,7 @@ function Section({ children, className, background, full }) {
                     className={"row " + className + "-child"}
                     style={{ zIndex: 30 }}
                 >
-                    <div className=" offset-md-2 col-md-10">{children}</div>
+                    <div className=" offset-md-6 col-md-6">{children}</div>
                 </div>
             </section>
         );
@@ -31,9 +32,10 @@ function Section({ children, className, background, full }) {
             style={{
                 textAlign: "right",
                 padding: "5em",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                background: `url(${background})` || "#000",
+                backgroundImage: bgPosition? `url(${background})` : "#000",
+                backgroundSize: bgSize ? bgSize : "cover",
+                backgroundPosition: bgPosition ? bgPosition : "center",
+                backgroundRepeat: "no-repeat",
                 zIndex: 4
             }}
         >
